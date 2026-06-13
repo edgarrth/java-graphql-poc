@@ -1,0 +1,17 @@
+### REST - authorize payment
+POST http://localhost:8080/payments/v1/payments
+Content-Type: application/json
+
+{
+  "merchantId": "mrc_001",
+  "orderId": "ord_1002",
+  "customerId": "cus_9001",
+  "amount": 99.90,
+  "currency": "PEN"
+}
+
+### REST - capture payment
+POST http://localhost:8080/payments/v1/payments/{{paymentId}}/capture
+Content-Type: application/json
+
+{}
