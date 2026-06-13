@@ -1,0 +1,35 @@
+type Query {
+  payment(id: ID!): Payment
+  paymentsByMerchant(merchantId: String!): [Payment!]!
+}
+
+type Mutation {
+  authorizePayment(input: AuthorizePaymentInput!): Payment!
+  capturePayment(id: ID!): Payment!
+  rejectPayment(id: ID!, reason: String!): Payment!
+}
+
+type Payment {
+  id: ID!
+  merchantId: String!
+  orderId: String!
+  customerId: String!
+  amount: BigDecimal!
+  currency: String!
+  status: PaymentStatus!
+  failureReason: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input AuthorizePaymentInput {
+  merchantId: String!
+  orderId: String!
+  customerId: String!
+  amount: BigDecimal!
+  currency: String!
+}
+
+enum PaymentStatus { AUTHORIZED CAPTURED REJECTED }
+scalar BigDecimal
+scalar DateTime
