@@ -77,6 +77,10 @@ http://localhost:8080/graphiql
 
 ## Mutation GraphQL de ejemplo
 
+```text
+http://localhost:8080/graphql
+```
+
 ```graphql
 mutation {
   authorizePayment(input: {
@@ -113,6 +117,31 @@ mutation {
 }
 ```
 
+## Consultas
+### Consulta por ID
+```graphql
+query {
+  payment(id: "PAYMENT_UUID") {
+    id
+    amount
+    currency
+    status
+  }
+}
+```
+### Consulta tdos los pagos por merchantId
+```graphql
+query {
+  paymentsByMerchant(merchantId: "mrc_001") {
+    id
+    orderId
+    amount
+    currency
+    status
+  }
+}
+```
+
 ## REST de ejemplo
 
 ```http
@@ -134,3 +163,4 @@ Content-Type: application/json
 - GraphQL vive como adapter de entrada; no contamina dominio ni aplicación.
 - REST se mantiene para demostrar convivencia con APIs operacionales estándar.
 - Flyway crea el esquema de base de datos al iniciar la app.
+
